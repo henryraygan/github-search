@@ -11,7 +11,6 @@
     
 </head>
 <body>
-
     <div id="search">
         <header class="main-header">
             <div class="container">
@@ -28,17 +27,25 @@
                 </div>
             </div>
         </header>
-
         <div class="container">
+            <div v-if="isSearch" class="is-search">
+                <img src="https://github.githubassets.com/images/spinners/octocat-spinner-64.gif" alt="">
+                <p>
+                    Search repositories
+                </p>
+            </div>
             <section class="list-repositories">
                 <h3 v-if="results.length > 0" class="list-repositories__stats">
                     {{ results_size }} repository results
                 </h3>
                 <!--stargazers_count-->
                 <div v-if="results.length > 0" class="repos">
-                    <div v-for="(item, key) in results" :key="key" class="repo">
+                    <div 
+                        v-for="(item, key) in results" 
+                        :key="key" 
+                        class="repo">
                         <div class="repo__header">
-                            <p class="repo__title">
+                            <p v-on:click="openModal(item.full_name)" class="repo__title">
                                 {{item.full_name}}
                             </p>
                             <p class="repo__stars">
@@ -50,10 +57,38 @@
                             {{item.description}}
                         </p>
                     </div>
+                    <modal v-if="showModal" @close="showModal = false">
+                        <div slot="body">
+                            {{ title }}
+                        </div>
+                    </modal>
                 </div>
             </section>
         </div>
     </div>
+
+    <script type="text/x-template" id="modal-template">
+        <transition name="modal">
+            <div class="modal-mask">
+                <div class="modal-wrapper">
+                    <div class="modal-container">
+                        <div class="modal-footer">
+                            <slot name="footer">
+                                <button class="modal-default-button" @click="$emit('close')">
+                                    Cerrar
+                                </button>
+                            </slot>
+                        </div>
+                        <div class="modal-body">
+                            <slot name="body">
+                                default body
+                            </slot>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+    </script>
     <script src="vue/main.js"></script>
 </body>
 </html>

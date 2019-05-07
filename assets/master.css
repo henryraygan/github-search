@@ -3,6 +3,20 @@
 	margin: 0;
 }
 
+@import url('https://rsms.me/inter/inter.css');
+html {
+	font-family: 'Inter', sans-serif;
+}
+@supports (font-variation-settings: normal) {
+	html {
+		font-family: 'Inter var', sans-serif;
+	}
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+}
+
 img {
 	display: block;
 }
@@ -102,6 +116,11 @@ a {
 	color: #586069;
 	border-bottom: 1px solid #eee;
 }
+.repo__header {
+	display: flex;
+	justify-content: space-between;
+}
+
 .repo__title {
 	font-size: 1.5rem;
 	font-weight: bold;

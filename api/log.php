@@ -12,6 +12,7 @@
     $sql->bindParam(':saved_key', $saved_key);
     $sql->execute();
     
+    
     if($sql) $arr = array('result' => 'succes', 'saved' => $saved_key);    
 
     echo json_encode($arr);

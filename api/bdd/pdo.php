@@ -1,15 +1,8 @@
 <?php 
     include "./config.php";
     try {
-        $conexion = new PDO("mysql:host=$host;dbname=$table;charset=utf8", $usr, $pwd);
-        
-        if($conexion) {
-            $status = true;
-        } else {
-            $status;
-        }
-        
+        $conexion = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $user, $password);
     } catch(PDOException $e) {
-        echo $e -> getMessage();
+        echo json_encode($e -> getMessage());
     }
 ?>

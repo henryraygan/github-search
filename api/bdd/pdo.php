@@ -1,8 +1,17 @@
 <?php 
-    include "./config.php";
+    
+    include "config.php";
+
     try {
-        $conexion = new PDO("mysql:host=$host;dbname=$database;charset=utf8", $user, $password);
+        $conexion = new PDO("mysql:host=$HOST;dbname=$DATABASE;charset=utf8", $USERNAME, $PASSWORD);
+        
+        if($conexion) {
+            $status = true;
+        } else {
+            $status;
+        }
+        
     } catch(PDOException $e) {
-        echo json_encode($e -> getMessage());
+        echo $e -> getMessage();
     }
 ?>

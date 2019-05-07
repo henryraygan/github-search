@@ -39,9 +39,8 @@
             </div>
             <section class="list-repositories">
                 <h3 v-if="results.length > 0" class="list-repositories__stats">
-                    {{ results_size }} repository results
+                    {{ formatNumber(results_size) }} repository results
                 </h3>
-                <!--stargazers_count-->
                 <div v-if="results.length > 0" class="repos">
                     <div 
                         v-for="(item, key) in results" 
@@ -114,6 +113,11 @@
                     </modal>
                 </div>
             </section>
+
+            <button v-if="results.length > 0 && results.length < 30"  @click="loadMore" class="button button-more">
+                More
+            </button>
+
         </div>
     </div>
 

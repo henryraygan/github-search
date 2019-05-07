@@ -12,21 +12,24 @@ var app = new Vue({
 		isSearch: false,
 		showModal: false,
 		modal_info: Object,
-		actual_commits: {}
+		actual_commits: {},
+		actual_page: 1
 	},
 	methods: {
 		search() {
 			this.resetSearch();
-			fetch(`https://api.github.com/search/repositories?q=${this.query}`)
-				.then((data) => data.json())
-				.then((response) => {
-					this.completeSearch(response, true);
-				});
+			const url = `https://api.github.com/search/repositories?q=${this.query}&type=Repositories`;
+			fetch(url).then((data) => data.json()).then((response) => {
+				this.completeSearch(response, true);
+			});
 		},
 		kFormatter(num) {
 			return Math.abs(num) > 999
 				? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + 'k'
 				: Math.sign(num) * Math.abs(num);
+		},
+		formatNumber(num) {
+			return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 		},
 		dateFormatter(str) {
 			if (!str) {
@@ -63,16 +66,14 @@ var app = new Vue({
 				body: JSON.stringify({ keyword: query })
 			}).then((res) =>
 				res.json().then((response) => {
-					// console.log(response);
+					console.log(response);
 				})
 			);
 		},
 		getListCommits(default_branch) {
 			const url = `https://api.github.com/repos/vuejs/vue/commits/${default_branch}`;
-			fetch(url)
-				.then((data) => data.json())
-				.then((response) => {
-					console.log(response);
+			fetch(url).then((data) => data.json()).then((response) => {
+				console.log(response);
 			});
 		},
 		resetSearch() {
@@ -85,7 +86,15 @@ var app = new Vue({
 			this.isSearch = !status;
 			this.results = response.items;
 			this.results_size = response.total_count;
+			console.log(response);
 			this.savedSearch(this.query);
-		}
+		},
+		loadMore() {
+			this.actual_page++;
+			const url = `https://api.github.com/search/repositories?q=${this.query}&page=${this.actual_page}`;
+			fetch(url).then((data) => data.json()).then((response) => {
+				this.results.push(...response.items);
+			});
+		}	
 	}
 });

@@ -12,7 +12,7 @@ var app = new Vue({
 		isSearch: false,
 		showModal: false,
 		modal_info: Object,
-		actual_commits: {},
+		recents_commits: {},
 		actual_page: 1
 	},
 	methods: {
@@ -50,7 +50,7 @@ var app = new Vue({
 			console.log(item);
 			this.showModal = true;
 			this.modal_info = item;
-			this.getListCommits(this.modal_info.default_branch);
+			this.getListCommits(this.modal_info.owner.login, this.modal_info.name);
 		},
 		closeModal() {
 			this.modal_info = {};
@@ -70,10 +70,13 @@ var app = new Vue({
 				})
 			);
 		},
-		getListCommits(default_branch) {
-			const url = `https://api.github.com/repos/vuejs/vue/commits/${default_branch}`;
-			fetch(url).then((data) => data.json()).then((response) => {
+		getListCommits(owner, repo) {
+			const URL = `https://api.github.com/repos/${owner}/${repo}/commits?author=${owner}`;
+			fetch(URL).then((data) => data.json()).then((response) => {
+				
+				this.recents_commits = response.map(r => r.commit);
 				console.log(response);
+				console.log(this.recents_commits);
 			});
 		},
 		resetSearch() {

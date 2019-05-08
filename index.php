@@ -108,13 +108,26 @@
                                         </td>
                                     </tr>
                                 </table>
+                                <div class="panel-commits">
+                                    <ul class="list-commits">
+                                        <li 
+                                            v-for="(item, key) in recents_commits" 
+                                            :key="key">
+                                            {{ item.message }}
+                                            <br>
+                                            <span class="committed">
+                                                
+                                            </span>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </modal>
                 </div>
             </section>
 
-            <button v-if="results.length > 0 && results.length < 30"  @click="loadMore" class="button button-more">
+            <button v-if="results.length > 0"  @click="loadMore" class="button button-more">
                 More
             </button>
 

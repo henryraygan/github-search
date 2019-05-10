@@ -44,7 +44,6 @@ export default {
           this.results.keyword = this.keyword;
           this.results.total_count = response.total_count;
           this.results.items = response.items;
-          console.log(this.results);
           this.savedSearch(this.keyword);
           this.$emit("results", this.results);
         });
@@ -59,7 +58,6 @@ export default {
         body: JSON.stringify({ keyword: query })
       }).then(res =>
         res.json().then(response => {
-          console.log(response);
         })
       );
     }

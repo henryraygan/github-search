@@ -1,0 +1,25 @@
+.repos {
+	margin: 2rem 0;
+}
+
+.repo {
+	padding: 1rem 0;
+	line-height: 1.6;
+	color: #586069;
+	border-bottom: 1px solid #eee;
+}
+.repo__header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.repo__title {
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: #0366d6;
+	cursor: pointer;
+}
+
+.repo__title:hover {
+	text-decoration: underline;
+}

@@ -41,8 +41,6 @@ export default {
         .then(data => data.json())
         .then(response => {
           this.recents_commits = response.map(r => r.commit);
-          console.log(response);
-          console.log(this.recents_commits);
         });
     }
   }

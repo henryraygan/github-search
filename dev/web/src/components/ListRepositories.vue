@@ -62,7 +62,6 @@ export default {
         });
     },
     getModal(item) {
-      console.log(item);
       this.$emit("item", item);
     }
   }

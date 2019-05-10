@@ -7,10 +7,12 @@
 - PHP 7.1 
 - MySQL or MariaDB 
 - Apache Server 
+- Nodejs
+- NPM
 
 #### MySQL Setup
 
-Setup /api/bdd/config.php with your credentials MySQL Server 
+Setup `/api/bdd/config.php` with your credentials MySQL Server 
 
 ```php
 <?php 
@@ -32,7 +34,7 @@ USE YOUR_DATABASE;
 CREATE TABLE log_searchs(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	created_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	search_query varchar(10) NOT NULL
+	search_query varchar(100) NOT NULL
 );
 
 ```
@@ -41,11 +43,11 @@ CREATE TABLE log_searchs(
 
 ###### Download repo
 ```
-git clone https://github.com/henryraygan/github-search.git && github-search /var/www/html
+git clone https://github.com/henryraygan/github-search.git && mv github-search /var/www/html
 ```
 use sudo if necessary
 
 #### Acces to web
 
-[arbitrary case-insensitive reference text]: https://localhost/github-search
+<http://localhost/github-search/>
 

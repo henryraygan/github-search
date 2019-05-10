@@ -47,6 +47,25 @@ git clone https://github.com/henryraygan/github-search.git && mv github-search /
 ```
 use sudo if necessary
 
+#### Run dev 
+
+```bash 
+cd dev/web/ && npm run serve
+```
+
+#### Build 
+
+```bash 
+npm run build
+```
+
+#### Build for server
+Clean folder *public/* and prepare new files for the move to root directory server 
+
+```bash 
+npm run build:prepareddeploy
+```
+
 #### Acces to web
 
 <http://localhost/github-search/>

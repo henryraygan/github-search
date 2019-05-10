@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:deploy": "rm -r /var/www/html/github-search/public/* && npm run build && mv dist/* /var/www/html/github-search/public"
+    "build:prepareddeploy": "rm -r /var/www/html/github-search/public/* && npm run build && mv dist/* /var/www/html/github-search/public"
   },
   "dependencies": {
     "core-js": "^2.6.5",

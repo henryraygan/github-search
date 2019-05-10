@@ -1,0 +1,22 @@
+// Base 
+@import "base/base";
+@import "base/normalize";
+
+// Config
+@import "config/functions";
+@import "config/variables";
+@import "config/mixins";
+
+// Layout 
+@import "layout/home";
+@import "layout/join";
+
+
+// Components 
+@import "components/buttons";
+@import "components/banner";
+@import "components/menu";
+@import "components/team";
+@import "components/faqs";
+
+@import "components/all";

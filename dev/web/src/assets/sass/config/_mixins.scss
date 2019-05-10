@@ -1,0 +1,44 @@
+  @mixin phone {
+      @media (max-width: #{$breakpoint-sm}) {
+          @content;
+      }
+  }
+
+  @mixin tablet {
+      @media (min-width: #{$breakpoint-md}) {
+          @content;
+      }
+  }
+
+  @mixin laptop {
+      @media (min-width: #{$breakpoint-lg}) {
+          @content;
+      }
+  }
+
+  @mixin desktop {
+      @media (min-width: #{$breakpoint-xl}) {
+          @content;
+      }
+  }
+
+  @function calculateRem($size) {
+    $remSize: $size / 16px;
+    @return #{$remSize}rem;
+  }
+
+  @mixin pxToRem($size) {
+    font-size: $size; //Fallback in px
+    font-size: calculateRem($size);
+  }
+
+
+
+  .d-flex {
+      display: flex;
+  }
+
+  .justify-content-center {
+      justify-content: center;
+  }
+

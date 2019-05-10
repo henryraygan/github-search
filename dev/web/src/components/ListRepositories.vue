@@ -5,7 +5,7 @@
       <div v-if="repos" class="repos">
         <div v-for="(item, key) in repos" :key="key" class="repo">
           <div class="repo__header">
-            <p class="repo__title">{{item.full_name}}</p>
+            <p @click="getModal(item)" class="repo__title">{{item.full_name}}</p>
             <p class="repo__stars">
               <i class="fas fa-star"></i>
               {{kFormatter(item.stargazers_count)}}
@@ -60,6 +60,10 @@ export default {
         .then(response => {
           this.repos.push(...response.items);
         });
+    },
+    getModal(item) {
+      console.log(item);
+      this.$emit("item", item);
     }
   }
 };
